@@ -315,7 +315,19 @@ class FallingLogos {
 
     createLogo() {
         const logo = document.createElement('div');
-        logo.className = 'falling-logo';
+
+        // ランダムに画像を選択 (company_logo 90%, numa 5%, makabi 5%)
+        const random = Math.random();
+        let imageClass;
+        if (random < 0.9) {
+            imageClass = 'falling-logo-company';
+        } else if (random < 0.95) {
+            imageClass = 'falling-logo-numa';
+        } else {
+            imageClass = 'falling-logo-makabi';
+        }
+
+        logo.className = `falling-logo ${imageClass}`;
 
         // ランダムなサイズを生成 (50px ~ 250px)
         const size = Math.random() * 200 + 50;

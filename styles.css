@@ -29,13 +29,26 @@ body {
     position: absolute;
     width: 60px;
     height: 60px;
-    background-image: url('company_logo.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     animation: fallRotate linear infinite;
     pointer-events: none;
     mix-blend-mode: multiply;
+}
+
+.falling-logo-company {
+    background-image: url('company_logo.png');
+}
+
+.falling-logo-numa {
+    background-image: url('numa.png');
+    border-radius: 50%;
+}
+
+.falling-logo-makabi {
+    background-image: url('makabi.png');
+    border-radius: 50%;
 }
 
 @keyframes fallRotate {
@@ -59,9 +72,7 @@ body {
 }
 
 .container {
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: transparent;
     padding: 40px;
     width: 90%;
     max-width: 1600px;
@@ -76,7 +87,10 @@ h1 {
     margin-bottom: 30px;
     font-size: 4em;
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9), -2px -2px 8px rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 20px;
 }
 
 .game-layout {
@@ -114,6 +128,7 @@ h1 {
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: bold;
+    backdrop-filter: blur(5px);
 }
 
 .btn-primary {
@@ -147,10 +162,10 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f0f0f0;
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 50%;
     border: 12px solid #4CAF50;
-    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2);
+    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
 }
 
 .bingo-board {
@@ -167,7 +182,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f5f5f5;
+    background: rgba(255, 255, 255, 0.9);
     border: 3px solid #ddd;
     border-radius: 10px;
     font-size: 24px;
@@ -175,6 +190,7 @@ h1 {
     color: #333;
     cursor: pointer;
     transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
 .bingo-cell:hover {
