@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #f5f5f5;
     min-height: 100vh;
     padding: 0;
     margin: 0;
@@ -59,11 +59,11 @@ body {
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.95);
+    background: white;
     border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     padding: 40px;
-    width: 80%;
+    width: 90%;
     max-width: 1600px;
     height: fit-content;
     position: relative;
@@ -89,7 +89,9 @@ h1 {
 .left-panel {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    justify-content: center;
+    gap: 50px;
+    height: 100%;
 }
 
 .right-panel {
@@ -136,18 +138,18 @@ h1 {
 }
 
 .number-display {
-    font-size: 120px;
+    font-size: 150px;
     font-weight: bold;
     color: #4CAF50;
-    width: 250px;
-    height: 250px;
+    width: 320px;
+    height: 320px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #f0f0f0;
     border-radius: 50%;
-    border: 10px solid #4CAF50;
+    border: 12px solid #4CAF50;
     box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2);
 }
 

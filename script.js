@@ -316,11 +316,16 @@ class FallingLogos {
     createLogo() {
         const logo = document.createElement('div');
         logo.className = 'falling-logo';
+
+        // ランダムなサイズを生成 (50px ~ 250px)
+        const size = Math.random() * 200 + 50;
+        logo.style.width = size + 'px';
+        logo.style.height = size + 'px';
+
         logo.style.left = Math.random() * 100 + '%';
         logo.style.animationDuration = (Math.random() * 5 + 10) + 's';
         logo.style.animationDelay = Math.random() * 2 + 's';
         logo.style.opacity = Math.random() * 0.3 + 0.1;
-        logo.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
 
         this.container.appendChild(logo);
 
