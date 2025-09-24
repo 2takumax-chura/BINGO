@@ -329,8 +329,8 @@ class FallingLogos {
 
         logo.className = `falling-logo ${imageClass}`;
 
-        // ランダムなサイズを生成 (50px ~ 250px)
-        const size = Math.random() * 200 + 50;
+        // ランダムなサイズを生成 (50px ~ 400px)
+        const size = Math.random() * 350 + 50;
         logo.style.width = size + 'px';
         logo.style.height = size + 'px';
 
