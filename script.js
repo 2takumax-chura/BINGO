@@ -133,7 +133,6 @@ class BingoGame {
 
     attachEventListeners() {
         document.getElementById('drawBall').addEventListener('click', () => this.drawNumber());
-        document.getElementById('resetGame').addEventListener('click', () => this.resetGame());
     }
 
     drawNumber() {
@@ -274,33 +273,9 @@ class BingoGame {
     }
 
     updateDrawnNumbersList() {
-        const container = document.getElementById('drawnNumbers');
-        container.innerHTML = '';
-        
-        const sortedNumbers = Array.from(this.drawnNumbers).sort((a, b) => a - b);
-        sortedNumbers.forEach(num => {
-            const span = document.createElement('span');
-            span.className = 'drawn-number';
-            span.textContent = num;
-            container.appendChild(span);
-        });
+        // 引いた番号リストの表示を削除
     }
 
-    resetGame() {
-        if (this.drawnNumbers.size > 0 && !confirm('ゲームをリセットしますか？')) {
-            return;
-        }
-        
-        this.drawnNumbers.clear();
-        this.currentNumber = null;
-        
-        document.getElementById('currentNumber').textContent = '-';
-        document.getElementById('drawnNumbers').innerHTML = '';
-        
-        document.querySelectorAll('.bingo-cell').forEach(cell => {
-            cell.classList.remove('drawn');
-        });
-    }
 }
 
 const style = document.createElement('style');
@@ -319,140 +294,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-class PrizeManager {
-    constructor() {
-        this.prizes = [];
-        this.loadPrizes();
-        this.initEventListeners();
-        this.render();
-    }
-
-    loadPrizes() {
-        const savedPrizes = localStorage.getItem('bingoPrizes');
-        if (savedPrizes) {
-            this.prizes = JSON.parse(savedPrizes);
-        } else {
-            this.prizes = Array.from({length: 40}, (_, i) => ({
-                id: i + 1,
-                name: `景品 ${i + 1}`,
-                claimed: false
-            }));
-            this.savePrizes();
-        }
-    }
-
-    savePrizes() {
-        localStorage.setItem('bingoPrizes', JSON.stringify(this.prizes));
-    }
-
-    initEventListeners() {
-        document.getElementById('addPrize').addEventListener('click', () => this.addPrize());
-    }
-
-    addPrize() {
-        const newId = Math.max(...this.prizes.map(p => p.id), 0) + 1;
-        this.prizes.push({
-            id: newId,
-            name: `景品 ${newId}`,
-            claimed: false
-        });
-        this.savePrizes();
-        this.render();
-    }
-
-    toggleClaim(id) {
-        const prize = this.prizes.find(p => p.id === id);
-        if (prize) {
-            prize.claimed = !prize.claimed;
-            this.savePrizes();
-            this.render();
-        }
-    }
-
-    editPrize(id) {
-        const prize = this.prizes.find(p => p.id === id);
-        if (!prize) return;
-
-        const item = document.querySelector(`[data-prize-id="${id}"]`);
-        if (item.classList.contains('editing')) {
-            const input = item.querySelector('.prize-input');
-            prize.name = input.value || prize.name;
-            item.classList.remove('editing');
-            this.savePrizes();
-            this.render();
-        } else {
-            item.classList.add('editing');
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.className = 'prize-input';
-            input.value = prize.name;
-            
-            const nameElement = item.querySelector('.prize-name');
-            nameElement.parentNode.insertBefore(input, nameElement.nextSibling);
-            input.focus();
-            
-            input.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    this.editPrize(id);
-                }
-            });
-            
-            input.addEventListener('blur', () => {
-                this.editPrize(id);
-            });
-        }
-    }
-
-    deletePrize(id) {
-        if (confirm('この景品を削除しますか？')) {
-            this.prizes = this.prizes.filter(p => p.id !== id);
-            this.savePrizes();
-            this.render();
-        }
-    }
-
-    resetPrizes() {
-        if (confirm('すべての景品をリセットしますか？')) {
-            this.prizes = this.prizes.map(p => ({...p, claimed: false}));
-            this.savePrizes();
-            this.render();
-        }
-    }
-
-    render() {
-        const container = document.getElementById('prizeList');
-        container.innerHTML = '';
-
-        const remainingCount = this.prizes.filter(p => !p.claimed).length;
-        document.getElementById('prizeCount').textContent = remainingCount;
-
-        this.prizes.forEach(prize => {
-            const item = document.createElement('div');
-            item.className = `prize-item ${prize.claimed ? 'claimed' : ''}`;
-            item.dataset.prizeId = prize.id;
-            
-            item.innerHTML = `
-                <div class="prize-number">${prize.id}</div>
-                <div class="prize-name">${prize.name}</div>
-                <div class="prize-actions">
-                    <button class="prize-btn" onclick="prizeManager.editPrize(${prize.id})" title="編集">✏️</button>
-                    <button class="prize-btn" onclick="prizeManager.deletePrize(${prize.id})" title="削除">🗑️</button>
-                </div>
-            `;
-            
-            item.addEventListener('click', (e) => {
-                if (!e.target.classList.contains('prize-btn') && 
-                    !e.target.classList.contains('prize-input')) {
-                    this.toggleClaim(prize.id);
-                }
-            });
-            
-            container.appendChild(item);
-        });
-    }
-}
-
-let prizeManager;
 
 window.addEventListener('beforeunload', (e) => {
     e.preventDefault();
@@ -461,5 +302,4 @@ window.addEventListener('beforeunload', (e) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     new BingoGame();
-    prizeManager = new PrizeManager();
 });

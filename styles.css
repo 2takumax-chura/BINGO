@@ -15,19 +15,19 @@ body {
 .main-wrapper {
     display: flex;
     min-height: 100vh;
-    gap: 20px;
     padding: 20px;
-    max-width: 1400px;
-    margin: 0 auto;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .container {
     background: white;
     border-radius: 20px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    padding: 30px;
-    flex: 1;
-    max-width: 800px;
+    padding: 40px;
+    width: 80%;
+    max-width: 1600px;
     height: fit-content;
 }
 
@@ -35,7 +35,9 @@ h1 {
     text-align: center;
     color: #333;
     margin-bottom: 30px;
-    font-size: 2.5em;
+    font-size: 4em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .game-controls {
@@ -46,10 +48,10 @@ h1 {
 }
 
 .btn {
-    padding: 12px 30px;
-    font-size: 16px;
+    padding: 20px 50px;
+    font-size: 24px;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: bold;
@@ -65,15 +67,6 @@ h1 {
     transform: translateY(-2px);
 }
 
-.btn-secondary {
-    background: #f44336;
-    color: white;
-}
-
-.btn-secondary:hover {
-    background: #da190b;
-    transform: translateY(-2px);
-}
 
 .current-number {
     text-align: center;
@@ -82,30 +75,31 @@ h1 {
 
 .current-number h2 {
     color: #666;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 2em;
 }
 
 .number-display {
-    font-size: 60px;
+    font-size: 100px;
     font-weight: bold;
     color: #4CAF50;
-    width: 120px;
-    height: 120px;
+    width: 200px;
+    height: 200px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #f0f0f0;
     border-radius: 50%;
-    border: 5px solid #4CAF50;
+    border: 8px solid #4CAF50;
 }
 
 .bingo-board {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    gap: 8px;
-    margin: 30px auto;
-    max-width: 600px;
+    gap: 12px;
+    margin: 40px auto;
+    max-width: 1000px;
 }
 
 .bingo-cell {
@@ -114,9 +108,9 @@ h1 {
     align-items: center;
     justify-content: center;
     background: #f5f5f5;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 18px;
+    border: 3px solid #ddd;
+    border-radius: 10px;
+    font-size: 28px;
     font-weight: bold;
     color: #333;
     cursor: pointer;
@@ -147,31 +141,6 @@ h1 {
     }
 }
 
-.drawn-numbers {
-    margin-top: 30px;
-    text-align: center;
-}
-
-.drawn-numbers h3 {
-    color: #666;
-    margin-bottom: 15px;
-}
-
-.drawn-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-}
-
-.drawn-number {
-    background: #667eea;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
-}
 
 .btn:disabled {
     opacity: 0.5;
@@ -245,141 +214,7 @@ h1 {
     overflow: visible;
 }
 
-.prize-panel {
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    width: 450px;
-    max-height: calc(100vh - 40px);
-    overflow-y: auto;
-    position: sticky;
-    top: 20px;
-}
 
-.prize-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #eee;
-}
-
-.prize-header h2 {
-    color: #333;
-    font-size: 1.3em;
-    margin: 0;
-}
-
-#prizeCount {
-    color: #4CAF50;
-    font-weight: bold;
-}
-
-.btn-small {
-    padding: 8px 16px;
-    font-size: 14px;
-}
-
-.prize-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.prize-item {
-    display: flex;
-    align-items: center;
-    padding: 12px;
-    background: #f8f9fa;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: 2px solid transparent;
-}
-
-.prize-item:hover {
-    background: #e9ecef;
-    transform: translateX(5px);
-}
-
-.prize-item.claimed {
-    opacity: 0.4;
-    background: #e8f5e9;
-    border-color: #4CAF50;
-    text-decoration: line-through;
-}
-
-.prize-number {
-    width: 35px;
-    height: 35px;
-    background: #667eea;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 14px;
-    margin-right: 12px;
-    flex-shrink: 0;
-}
-
-.prize-item.claimed .prize-number {
-    background: #4CAF50;
-}
-
-.prize-name {
-    flex: 1;
-    font-size: 15px;
-    color: #333;
-}
-
-.prize-item.editing .prize-name {
-    display: none;
-}
-
-.prize-input {
-    flex: 1;
-    padding: 5px 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 15px;
-}
-
-.prize-actions {
-    display: flex;
-    gap: 5px;
-    margin-left: 10px;
-}
-
-.prize-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    padding: 4px;
-    transition: transform 0.2s;
-}
-
-.prize-btn:hover {
-    transform: scale(1.2);
-}
-
-@media (max-width: 1024px) {
-    .main-wrapper {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .prize-panel {
-        width: 100%;
-        max-width: 800px;
-        position: static;
-        max-height: none;
-    }
-}
 
 @media (max-width: 600px) {
     .container {
