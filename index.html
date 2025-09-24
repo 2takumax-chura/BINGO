@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ビンゴゲーム</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="container">
+            <h1>🎲 ビンゴゲーム 🎲</h1>
+            
+            <div class="game-controls">
+                <button id="drawBall" class="btn btn-primary">番号を引く</button>
+                <button id="resetGame" class="btn btn-secondary">リセット</button>
+            </div>
+
+            <div class="current-number">
+                <h2>現在の番号</h2>
+                <div id="currentNumber" class="number-display">-</div>
+            </div>
+
+            <div class="bingo-board" id="bingoBoard"></div>
+
+            <div class="drawn-numbers">
+                <h3>引いた番号</h3>
+                <div id="drawnNumbers" class="drawn-list"></div>
+            </div>
+        </div>
+
+        <div class="prize-panel">
+            <div class="prize-header">
+                <h2>🎁 景品リスト (残り: <span id="prizeCount">40</span>/40)</h2>
+                <button id="addPrize" class="btn btn-small">+ 追加</button>
+            </div>
+            <div class="prize-list" id="prizeList"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
