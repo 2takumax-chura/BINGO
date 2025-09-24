@@ -34,11 +34,11 @@ body {
     background-position: center;
     animation: fallRotate linear infinite;
     pointer-events: none;
-    mix-blend-mode: multiply;
 }
 
 .falling-logo-company {
     background-image: url('company_logo.png');
+    mix-blend-mode: darken;
 }
 
 .falling-logo-numa {
