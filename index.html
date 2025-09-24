@@ -7,20 +7,27 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="falling-logos-container" id="fallingLogos"></div>
     <div class="main-wrapper">
         <div class="container">
             <h1>🎉 ちゅらデータ 8周年記念ビンゴ 🎉</h1>
-            
-            <div class="game-controls">
-                <button id="drawBall" class="btn btn-primary">番号を引く</button>
-            </div>
 
-            <div class="current-number">
-                <h2>現在の番号</h2>
-                <div id="currentNumber" class="number-display">-</div>
-            </div>
+            <div class="game-layout">
+                <div class="left-panel">
+                    <div class="current-number">
+                        <h2>現在の番号</h2>
+                        <div id="currentNumber" class="number-display">-</div>
+                    </div>
 
-            <div class="bingo-board" id="bingoBoard"></div>
+                    <div class="game-controls">
+                        <button id="drawBall" class="btn btn-primary">番号を引く</button>
+                    </div>
+                </div>
+
+                <div class="right-panel">
+                    <div class="bingo-board" id="bingoBoard"></div>
+                </div>
+            </div>
         </div>
     </div>
 

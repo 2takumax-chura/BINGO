@@ -300,6 +300,37 @@ window.addEventListener('beforeunload', (e) => {
     e.returnValue = '';
 });
 
+class FallingLogos {
+    constructor() {
+        this.container = document.getElementById('fallingLogos');
+        this.createLogos();
+        setInterval(() => this.createLogo(), 3000);
+    }
+
+    createLogos() {
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => this.createLogo(), i * 500);
+        }
+    }
+
+    createLogo() {
+        const logo = document.createElement('div');
+        logo.className = 'falling-logo';
+        logo.style.left = Math.random() * 100 + '%';
+        logo.style.animationDuration = (Math.random() * 5 + 10) + 's';
+        logo.style.animationDelay = Math.random() * 2 + 's';
+        logo.style.opacity = Math.random() * 0.3 + 0.1;
+        logo.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
+
+        this.container.appendChild(logo);
+
+        setTimeout(() => {
+            logo.remove();
+        }, 20000);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     new BingoGame();
+    new FallingLogos();
 });
